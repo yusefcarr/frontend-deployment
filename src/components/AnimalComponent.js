@@ -9,8 +9,8 @@ const AnimalComponent = () => {
   useEffect(() => {
     // Fetch pets and products concurrently using Promise.all
     Promise.all([
-      fetch(`http://localhost:5000/pets/${animal}`).then((response) => response.json()),
-      fetch(`http://localhost:5000/products/${animal}`).then((response) => response.json())
+      fetch(`https://backend-deployment-g3a1.onrender.com/pets/${animal}`).then((response) => response.json()),
+      fetch(`https://backend-deployment-g3a1.onrender.com/products/${animal}`).then((response) => response.json())
     ])
     .then(([petsData, productsData]) => {
       setPets(petsData);  // Set pets data
