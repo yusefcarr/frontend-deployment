@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BACKEND_URL from '../config';
 
 const PetInsuranceForm = () => {
   const [formData, setFormData] = useState({
@@ -14,18 +15,51 @@ const PetInsuranceForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Insurance form submitted!');
+
+    // Basic form validation
+    if (!formData.petName || !formData.animal || !formData.breed || !formData.insuranceProvider || !formData.policyNumber ) {
+      alert('Please fill out all required fields.');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${BACKEND_URL}pet-insurance`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Insurance form submitted!');
+        setFormData({
+          petName: '',
+          animal: '',
+          breed: '',
+          insuranceProvider: '',
+          policyNumber: '',
+          additionalInfo: '',
+        });
+      } else {
+        alert('Failed to submit the form.');
+      }
+    } catch (error) {
+      console.error('Error submitting the form', error);
+      alert('An error occurred. Please try again.');
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="pet-insurance-form">
       <h2>Pet Insurance</h2>
       <div className="form-group">
-        <label>Pet Name:</label>
+        <label htmlFor="petName">Pet Name:</label>
         <input
           type="text"
+          id="petName"
           name="petName"
           placeholder="Enter your pet's name"
           value={formData.petName}
@@ -33,9 +67,10 @@ const PetInsuranceForm = () => {
         />
       </div>
       <div className="form-group">
-        <label>Animal:</label>
+        <label htmlFor="animal">Animal:</label>
         <input
           type="text"
+          id="animal"
           name="animal"
           placeholder="Enter animal type"
           value={formData.animal}
@@ -43,9 +78,10 @@ const PetInsuranceForm = () => {
         />
       </div>
       <div className="form-group">
-        <label>Breed:</label>
+        <label htmlFor="breed">Breed:</label>
         <input
           type="text"
+          id="breed"
           name="breed"
           placeholder="Enter breed"
           value={formData.breed}
@@ -53,9 +89,10 @@ const PetInsuranceForm = () => {
         />
       </div>
       <div className="form-group">
-        <label>Insurance Provider:</label>
+        <label htmlFor="insuranceProvider">Insurance Provider:</label>
         <input
           type="text"
+          id="insuranceProvider"
           name="insuranceProvider"
           placeholder="Enter your insurance provider"
           value={formData.insuranceProvider}
@@ -63,9 +100,10 @@ const PetInsuranceForm = () => {
         />
       </div>
       <div className="form-group">
-        <label>Policy Number:</label>
+        <label htmlFor="policyNumber">Policy Number:</label>
         <input
           type="text"
+          id="policyNumber"
           name="policyNumber"
           placeholder="Enter your insurance policy number"
           value={formData.policyNumber}
@@ -73,8 +111,9 @@ const PetInsuranceForm = () => {
         />
       </div>
       <div className="form-group">
-        <label>Additional Information:</label>
+        <label htmlFor="additionalInfo">Additional Information:</label>
         <textarea
+          id="additionalInfo"
           name="additionalInfo"
           placeholder="Enter any additional information"
           value={formData.additionalInfo}
@@ -87,3 +126,4 @@ const PetInsuranceForm = () => {
 };
 
 export default PetInsuranceForm;
+

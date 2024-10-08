@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { CartContext } from '../CartContext'; // Import the context
 import SnakeTerrarium from '../Photos/snake_terrarium.jpg';
 import GeckoFood from '../Photos/gecko_food.jpg';
 import TurtleCare from '../Photos/turtle_care.jpg';
@@ -36,18 +38,22 @@ const deals = [
 ];
 
 const DealsByLocation = () => {
+  const { addToCart } = useContext(CartContext); // Get the addToCart function from context
+
   return (
     <div className="deals-location-section">
       <h2>Deals by Location</h2>
       <div className="deal-cards">
         {deals.map((deal, index) => (
-          <div key={index} className="deal-card">
-            <img src={deal.image} alt={deal.name} className="deal-image" />
+          <div key={index} className="deal-card" style={{width: '15rem'}}>
+            <img src={deal.image} alt={deal.name} className="deal-image img-fluid" />
             <h3>{deal.brand}</h3>
             <p>{deal.name}</p>
             <p className="deal-discount">{deal.deal}</p>
             <p className="deal-location">{deal.location}</p>
-            <button className="add-to-cart">Add to Cart</button>
+            <Link to="/shop"> {/* Link to the shop page */}
+              <button className="add-to-cart">Add to Cart</button>
+            </Link>
           </div>
         ))}
       </div>
@@ -56,3 +62,4 @@ const DealsByLocation = () => {
 };
 
 export default DealsByLocation;
+

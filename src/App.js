@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-use-before-define
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
 import NotificationBar from './components/NotificationBar';
 import Navbar from  './components/Navbar';
 import Footer from './components/Footer';
@@ -27,6 +26,7 @@ import Newsletter from './components/Newsletter';
 import Community from './components/Community';
 import AnimalComponent from './components/AnimalComponent';
 import CheckoutForm from './components/CheckoutForm';
+import DealsByLocation from './components/DealsByLocation';
 
 
 function App() {
@@ -61,6 +61,7 @@ function App() {
         <Route path='/pharmacy' element={<Pharmacy/>} />
         <Route path='/newsletter' element={<Newsletter/>} />
         <Route path='/community' element={<Community/>} />
+        <Route path='/dealsbylocation' element={<DealsByLocation/>} />
       </Routes>
       <Footer/>
       

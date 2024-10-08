@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { CartContext } from '../CartContext';
+import BACKEND_URL from '../config';
 const AnimalComponent = () => {
   const { addToCart } = useContext(CartContext); 
   const { animal } = useParams();  // Gets the animal type from the URL (e.g., gecko)
@@ -9,8 +10,8 @@ const AnimalComponent = () => {
   useEffect(() => {
     // Fetch pets and products concurrently using Promise.all
     Promise.all([
-      fetch(`https://backend-deployment-g3a1.onrender.com/pets/${animal}`).then((response) => response.json()),
-      fetch(`https://backend-deployment-g3a1.onrender.com/products/${animal}`).then((response) => response.json())
+      fetch(`${BACKEND_URL}pets/${animal}`).then((response) => response.json()),
+      fetch(`${BACKEND_URL}products/${animal}`).then((response) => response.json())
     ])
     .then(([petsData, productsData]) => {
       setPets(petsData);  // Set pets data

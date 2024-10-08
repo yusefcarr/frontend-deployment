@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BACKEND_URL from '../config';
 
 const VetServicesForm = () => {
   const [formData, setFormData] = useState({
@@ -14,9 +15,37 @@ const VetServicesForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Vet service appointment submitted!');
+
+    try {
+      // Sending a POST request to the backend using fetch
+      const response = await fetch(`${BACKEND_URL}vet-services`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Vet service appointment submitted!');
+        // Optionally, reset the form after successful submission
+        setFormData({
+          petName: '',
+          animal: '',
+          breed: '',
+          insuranceProvider: '',
+          policyNumber: '',
+          additionalInfo: '',
+        });
+      } else {
+        alert('Failed to submit the vet service appointment.');
+      }
+    } catch (error) {
+      console.error('Error submitting the form:', error);
+      alert('Error submitting the vet service appointment.');
+    }
   };
 
   return (
@@ -87,3 +116,5 @@ const VetServicesForm = () => {
 };
 
 export default VetServicesForm;
+
+

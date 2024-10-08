@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BACKEND_URL from '../config';
 
 const PetTrainingForm = () => {
   const [formData, setFormData] = useState({
@@ -13,9 +14,36 @@ const PetTrainingForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Training session submitted!');
+    
+    try {
+      const response = await fetch(`${BACKEND_URL}pet-training`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert('Training session submitted successfully!');
+        setFormData({
+          petName: '',
+          animal: '',
+          breed: '',
+          trainingTier: 'Low',
+          additionalInfo: '',
+        });
+      } else {
+        alert(`Error: ${result.error}`);
+      }
+    } catch (error) {
+      console.error('Error submitting the training session:', error);
+      alert('Failed to submit training session');
+    }
   };
 
   return (
@@ -75,3 +103,4 @@ const PetTrainingForm = () => {
 };
 
 export default PetTrainingForm;
+

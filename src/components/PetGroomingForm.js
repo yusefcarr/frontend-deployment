@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BACKEND_URL from '../config';
 
 const PetGroomingForm = () => {
   const [formData, setFormData] = useState({
@@ -13,9 +14,36 @@ const PetGroomingForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Grooming session submitted!');
+    
+    try {
+      const response = await fetch(`${BACKEND_URL}pet-grooming`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert('Grooming session submitted successfully!');
+        setFormData({
+          petName: '',
+          animal: '',
+          breed: '',
+          additionalInfo: '',
+          price: '50', // Reset to default price
+        });
+      } else {
+        alert(`Error: ${result.error}`);
+      }
+    } catch (error) {
+      console.error('Error submitting the grooming session:', error);
+      alert('Failed to submit grooming session');
+    }
   };
 
   return (
@@ -67,4 +95,5 @@ const PetGroomingForm = () => {
 };
 
 export default PetGroomingForm;
+
 

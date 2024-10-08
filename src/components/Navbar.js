@@ -38,7 +38,10 @@ const NavBar = () => {
           <div className="bar"></div>
           <div className="bar"></div>
         </div>
-        <img src={Logo} alt="Logo" className="navbar-logo" />
+        {/* Logo section */}
+        <Link to="/">
+          <img src={Logo} alt="Scales and Tails Logo" className="navbar-logo" />
+        </Link>
       </div>
 
       {/* Sidebar */}
@@ -48,15 +51,12 @@ const NavBar = () => {
       ></div>
 
       {/* Account and Cart section */}
-<div className="right-section">
-  <button className="account-button">Account</button>
-  {/* <Link to='./components/CartPage'>
-    <div className="cart-icon">🛒</div>
-  </Link> */}
-  <Link to="/cart">
-  🛒 ({cart.reduce((acc, item) => acc + item.quantity, 0)})
-      </Link> 
-</div>
+      <div className="right-section">
+        <button className="account-button">Account</button>
+        <Link to="/cart">
+          🛒 ({cart.reduce((acc, item) => acc + item.quantity, 0)})
+        </Link>
+      </div>
 
       {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import TurtleLamp from '../Photos/heat_lamp.jpg';
 import GeckoHabitat from '../Photos/gecko_habitat.jpg';
 import LizardFood from '../Photos/lizard_food.jpg';
@@ -23,14 +24,16 @@ const MostPopularItems = () => {
   return (
     <div className="most-popular-section">
       <h2>Most Popular Items</h2>
-      <div className="product-cards">
+      <div className="product-cards mt-5">
         {products.map((product, index) => (
-          <div key={index} className="product-card">
-            <img src={product.image} alt={product.name} className="product-image" />
+          <div key={index} className="product-card" style={{width: '15rem'}}>
+            <img src={product.image} alt={product.name} className="product-image img-fluid" />
             <h3>{product.brand}</h3>
             <p>{product.name}</p>
             <p className="product-price">{product.price}</p>
-            <button className="add-to-cart">Add to Cart</button>
+            <Link to="/shop"> {/* Link to the shop page */}
+              <button className="add-to-cart">Add to Cart</button>
+            </Link>
           </div>
         ))}
       </div>

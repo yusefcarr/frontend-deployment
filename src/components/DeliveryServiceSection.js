@@ -3,7 +3,7 @@ import DeliveryLogo from '../Logo/delivery_logo.jpg';
 
 const DeliveryServiceSection = () => {
   return (
-    <div className="delivery-service-section">
+    <div className="delivery-service-section mt-5">
       {/* Left Side - Delivery Service Logo */}
       <div className="delivery-left">
         <img src={DeliveryLogo} alt="Scales and Tails Delivery Service" className="delivery-logo" />

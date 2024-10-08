@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BACKEND_URL from '../config';
 
 const AdoptionForm = () => {
   const [formData, setFormData] = useState({
@@ -14,9 +15,36 @@ const AdoptionForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Adoption form submitted!');
+
+    try {
+      const response = await fetch(`${BACKEND_URL}adoption`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Adoption form submitted successfully!');
+        // Optionally reset the form after submission
+        setFormData({
+          adopterName: '',
+          contactInfo: '',
+          animalType: '',
+          breed: '',
+          additionalInfo: '',
+          price: '500', // Reset to default price
+        });
+      } else {
+        alert('Failed to submit the adoption form.');
+      }
+    } catch (error) {
+      console.error('Error submitting the form:', error);
+      alert('Error submitting the adoption form.');
+    }
   };
 
   return (
@@ -78,3 +106,4 @@ const AdoptionForm = () => {
 };
 
 export default AdoptionForm;
+

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BACKEND_URL from '../config';
 
 const ReptileParkForm = () => {
   const [formData, setFormData] = useState({
@@ -14,9 +15,37 @@ const ReptileParkForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Reptile Park session submitted!');
+
+    // Send form data to the backend using fetch
+    try {
+      const response = await fetch(`${BACKEND_URL}reptile-park`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Reptile Park session submitted!');
+        // Optionally clear form after submission
+        setFormData({
+          petName: '',
+          animal: '',
+          breed: '',
+          timeSlot: '',
+          additionalInfo: '',
+          price: '20',
+        });
+      } else {
+        alert('Failed to submit. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('An error occurred. Please try again.');
+    }
   };
 
   return (

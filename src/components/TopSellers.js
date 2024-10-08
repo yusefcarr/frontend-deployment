@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link for routing
 import Terrarium from '../Photos/terrarium.jpg';
 import DragonFood from '../Photos/dragonfood.png';
 import SnakeBedding from '../Photos/snake_bedding.jpg';
@@ -23,12 +24,14 @@ const TopSellers = () => {
       <h2>Top Sellers</h2>
       <div className="product-cards">
         {products.map((product, index) => (
-          <div key={index} className="product-card">
-            <img src={product.image} alt={product.name} className="product-image" />
+          <div key={index} className="product-card" style={{ width: '15rem' }}>
+            <img src={product.image} alt={product.name} className="product-image img-fluid" />
             <h3>{product.brand}</h3>
             <p>{product.name}</p>
             <p className="product-price">{product.price}</p>
-            <button className="add-to-cart">Add to Cart</button>
+            <Link to="/shop"> {/* Link to the shop page */}
+              <button className="add-to-cart">Add to Cart</button>
+            </Link>
           </div>
         ))}
       </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BACKEND_URL from '../config';
 
 const DeliveryForm = () => {
   const [formData, setFormData] = useState({
@@ -15,9 +16,36 @@ const DeliveryForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Delivery request submitted!');
+
+    try {
+      const response = await fetch(`${BACKEND_URL}delivery`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Delivery request submitted!');
+        setFormData({
+          name: '',
+          address: '',
+          city: '',
+          zipCode: '',
+          animal: '',
+          deliveryTime: '',
+          additionalInfo: '',
+        });
+      } else {
+        const data = await response.json();
+        alert(`Failed to submit: ${data.message}`);
+      }
+    } catch (err) {
+      alert('Error submitting delivery request');
+    }
   };
 
   return (
@@ -98,3 +126,4 @@ const DeliveryForm = () => {
 };
 
 export default DeliveryForm;
+

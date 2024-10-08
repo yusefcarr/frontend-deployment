@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BACKEND_URL from '../config';
 
 const CreditCardForm = () => {
   const [formData, setFormData] = useState({
@@ -14,9 +15,35 @@ const CreditCardForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Credit card application submitted!');
+
+    try {
+      const response = await fetch(`${BACKEND_URL}credit-card`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Credit card application submitted successfully!');
+        setFormData({
+          fullName: '',
+          address: '',
+          city: '',
+          zipCode: '',
+          email: '',
+          additionalInfo: '',
+        });
+      } else {
+        const data = await response.json();
+        alert(`Failed to submit: ${data.message}`);
+      }
+    } catch (err) {
+      alert('Error submitting credit card application');
+    }
   };
 
   return (
@@ -87,3 +114,4 @@ const CreditCardForm = () => {
 };
 
 export default CreditCardForm;
+
