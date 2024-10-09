@@ -67,7 +67,6 @@ const NavBar = () => {
           <Link to="/shop">Shop</Link>
           <Link to="/services">Services</Link>
           <Link to="/rewards">Rewards</Link>
-          <Link to="/pharmacy">Pharmacy</Link>
           <Link to="/newsletter">Newsletter</Link>
           <Link to="/community">Community</Link>
           <Link to="/contact">Contact</Link>

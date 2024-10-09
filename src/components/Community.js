@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';  // Import the Link component
 import ChatRoom from './ChatRoom'; // Import the ChatRoom component
 import Snake from '../Animals/Snake.jpg';
-import Community from '../Photos/community.png'
-
+import Community from '../Photos/community.png';
 
 const CommunityPage = () => {
   const [blogPosts, setBlogPosts] = useState([
     { title: 'Blog Post 1', date: '2023-10-01' },
     { title: 'Blog Post 2', date: '2023-10-02' },
-    // Add more blog posts as needed
   ]);
 
   const addBlogPost = () => {
@@ -22,12 +21,15 @@ const CommunityPage = () => {
       <section className="hero-section">
         <h1 className="hero-title">Community</h1>
         <img src={Community} alt="Community" className="hero-image" />
-        <button className="join-button">Join</button>
       </section>
+      
+      {/* Join Button */}
+      <Link to="/mailing-list-form">  {/* Use Link to route to the mailing list form */}
+        <button className="join-button mt-3">Join</button>
+      </Link>
 
       {/* Blog, Vote, and Tier List */}
       <section className="upper-section">
-        {/* Blog Section */}
         <div className="blog-section">
           <h2>Blog</h2>
           <ul>
@@ -41,7 +43,6 @@ const CommunityPage = () => {
           <button className="add-post-button" onClick={addBlogPost}>Add Post</button>
         </div>
 
-        {/* Vote Section */}
         <div className="vote-section">
           <h2>Vote for the Best Pet</h2>
           <div className="stars">
@@ -52,7 +53,6 @@ const CommunityPage = () => {
           <img src={Snake} alt="Pet" className="vote-pet-image" />
         </div>
 
-        {/* Tier List Section */}
         <div className="tier-list-section">
           <h2>Tier List</h2>
           <form>
@@ -72,12 +72,10 @@ const CommunityPage = () => {
 
       {/* Chat, Outreach, Tips & Tricks */}
       <section className="lower-section">
-        {/* Chat Room */}
         <div className="chat-room-section">
           <ChatRoom /> {/* Use the ChatRoom component here */}
         </div>
 
-        {/* Outreach Section */}
         <div className="outreach-section">
           <h2>Outreach</h2>
           <p>Upcoming Outreach Missions:</p>
@@ -92,7 +90,6 @@ const CommunityPage = () => {
           </ul>
         </div>
 
-        {/* Tips & Tricks Section */}
         <div className="tips-tricks-section">
           <h2>Tips & Tricks</h2>
           <ul>

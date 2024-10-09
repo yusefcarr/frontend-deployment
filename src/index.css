@@ -1216,6 +1216,21 @@
   background-color: #3B3B3B;
 }
 
+.join-button {
+  background-color: #4CAF50; /* Leafy green color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.join-button:hover {
+  background-color: #45a049;
+}
+
+
 /* Animal Cards Section */
 .animal-cards-section {
   margin-top: 40px;

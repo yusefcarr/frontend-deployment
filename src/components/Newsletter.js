@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import Newsletter from '../Photos/newsletter.png'
 
 const NewsletterPage = () => {
@@ -21,8 +22,12 @@ const NewsletterPage = () => {
       <section className="hero-section">
         <img src={Newsletter} alt="Newsletter" className="hero-image" />
         <h1 className="hero-title">Newsletter</h1>
-        <button className="join-button">Join our mailing list</button>
-      </section>
+      </section>  
+        {/* Link to the Mailing List Form */}
+        <Link to="/mailing-list-form">
+          <button className="join-button mt-3">Join our mailing list</button>
+        </Link>
+      
 
       {/* Two-Sided Section: Recent Posts and Latest Posts */}
       <section className="posts-section">
@@ -57,3 +62,4 @@ const NewsletterPage = () => {
 };
 
 export default NewsletterPage;
+

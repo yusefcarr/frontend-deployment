@@ -1,7 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import DeliveryLogo from '../Logo/delivery_logo.jpg';
 
 const DeliveryServiceSection = () => {
+  const navigate = useNavigate(); // Initialize navigate function
+
+  // Function to handle sign-up button click
+  const handleSignUpClick = () => {
+    navigate('/delivery'); // Navigate to the delivery form page (replace with your route path)
+  };
+
   return (
     <div className="delivery-service-section mt-5">
       {/* Left Side - Delivery Service Logo */}
@@ -18,7 +26,9 @@ const DeliveryServiceSection = () => {
         </p>
 
         {/* Sign Up Button */}
-        <button className="sign-up-button">Sign Up</button>
+        <button className="sign-up-button" onClick={handleSignUpClick}>
+          Sign Up
+        </button>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
-import RewardsHero from '../Photos/rewards_hero.png'
+import { Link } from 'react-router-dom';  // Import Link for routing
+import RewardsHero from '../Photos/rewards_hero.png';
 
 const RewardsPage = () => {
   return (
@@ -7,12 +8,13 @@ const RewardsPage = () => {
       {/* Hero Section */}
       <section className="hero-section">
         <img src={RewardsHero} alt="Rewards" className="hero-image" />
-        <h1 className="hero-title_rewards">Rewards</h1>
       </section>
 
       {/* Subscribe Button Section */}
       <section className="subscribe-section">
-        <button className="subscribe-button">Subscribe</button>
+        <Link to="/rewards-form">  {/* Link to the rewards form */}
+          <button className="subscribe-button">Subscribe</button>
+        </Link>
       </section>
 
       {/* Rewards Program Section */}

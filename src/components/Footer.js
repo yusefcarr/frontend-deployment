@@ -27,7 +27,6 @@ const Footer = () => {
             <li><a href="#resources">Resources</a></li>
             <li><a href="#breed-info">Pet Breed Information</a></li>
             <li><a href="#insurance">Pet Insurance</a></li>
-            <li><a href="#pharmacy">Pharmacy</a></li>
             <li><a href="#credit-card">Scales and Tails Credit Card</a></li>
           </ul>
         </div>

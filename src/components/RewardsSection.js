@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Snake from '../Animals/Snake.jpg';
 import Gecko from '../Animals/Gecko.jpg';
 import Turtle from '../Animals/Turtle.jpg';
@@ -24,7 +25,9 @@ const RewardsSection = () => {
       </div>
 
       {/* Subscribe Button */}
-      <button className="subscribe-button">Subscribe</button>
+      <Link to="/rewards-form">  {/* Link to the rewards form */}
+          <button className="subscribe-button">Subscribe</button>
+        </Link>
     </div>
   );
 };

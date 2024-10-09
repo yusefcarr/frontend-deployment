@@ -12,6 +12,7 @@ import CartPage from './components/CartPage';
 import { CartProvider } from './CartContext';
 import CheckoutPage from './components/CheckoutPage';
 import Rewards from './components/Rewards';
+import RewardsForm from './components/RewardsForm';
 import Services from './components/Services';
 import PetGroomingForm from './components/PetGroomingForm';
 import PetTrainingForm from './components/PetTrainingForm';
@@ -20,8 +21,9 @@ import ReptileParkForm from './components/ReptileParkForm';
 import AdoptionForm from './components/AdoptionForm';
 import PetInsuranceForm from './components/PetInsuranceForm';
 import DeliveryForm from './components/DeliveryForm';
+import DeliveryServiceSection from './components/DeliveryServiceSection';
 import CreditCardForm from './components/CreditCardForm';
-import Pharmacy from './components/Pharmacy';
+import MailingListForm from './components/MailingListForm';
 import Newsletter from './components/Newsletter';
 import Community from './components/Community';
 import AnimalComponent from './components/AnimalComponent';
@@ -49,16 +51,19 @@ function App() {
         <Route path='/pets/:animal' element={<AnimalComponent/>} />
         <Route path='/products/:animal' element={<AnimalComponent/>} />
         <Route path='/rewards' element={<Rewards/>} />
+        <Route path="/rewards-form" element={<RewardsForm/>} />
         <Route path='/services' element={<Services/>} />
         <Route path='/pet-grooming' element={<PetGroomingForm/>} />
         <Route path='/pet-training' element={<PetTrainingForm/>} />
         <Route path='/vet-services' element={<VetServicesForm/>} />
-        <Route path='/adoption' element={<AdoptionForm/>} />
+        <Route path='/adoption-form' element={<AdoptionForm/>} />
+        <Route path='/adoption-form/:id' element={<AdoptionForm/>} />
         <Route path='/pet-park' element={<ReptileParkForm/>} />
         <Route path='/pet-insurance' element={<PetInsuranceForm/>} />
         <Route path='/delivery' element={<DeliveryForm/>} />
+        <Route path="/delivery-service" element={<DeliveryServiceSection />} />
         <Route path='/credit-card' element={<CreditCardForm/>} />
-        <Route path='/pharmacy' element={<Pharmacy/>} />
+        <Route path="/mailing-list-form" element={<MailingListForm/>} />
         <Route path='/newsletter' element={<Newsletter/>} />
         <Route path='/community' element={<Community/>} />
         <Route path='/dealsbylocation' element={<DealsByLocation/>} />
