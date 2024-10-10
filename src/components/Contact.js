@@ -1,7 +1,67 @@
-import React, { useState } from 'react';
-import Contact from '../Photos/contact.png'
-
+import React, { useState, useEffect } from 'react';
+import Contact from '../Photos/contact.png';
+import BACKEND_URL from '../config';
 const ContactPage = () => {
+  const [value, setValue] = useState('');
+  const [message, setMessage] = useState('');
+  const [previousChats, setPreviousChats] = useState([]);
+  const [currentTitle, setCurrentTitle] = useState(null);
+
+  const createNewChat = () => {
+    setMessage('');
+    setValue('');
+    setCurrentTitle(null);
+  };
+
+  const handleClick = (uniqueTitle) => {
+    setCurrentTitle(uniqueTitle);
+    setMessage('');
+    setValue('');
+  };
+
+  const getMessage = async () => {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        message: value,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const response = await fetch(BACKEND_URL + 'completions', options);
+      const data = await response.json();
+      setMessage(data.choices[0].message);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (!currentTitle && value && message) {
+      setCurrentTitle(value);
+    }
+    if (currentTitle && value && message) {
+      setPreviousChats((prevChats) => [
+        ...prevChats,
+        {
+          title: currentTitle,
+          role: 'user',
+          content: value,
+        },
+        {
+          title: currentTitle,
+          role: message.role,
+          content: message.content,
+        },
+      ]);
+    }
+  }, [message, currentTitle]);
+
+  const currentChat = previousChats.filter((previousChat) => previousChat.title === currentTitle);
+  const uniqueTitles = Array.from(new Set(previousChats.map((previousChat) => previousChat.title)));
+
   // Accordion state for FAQs
   const [faqOpen, setFaqOpen] = useState(Array(10).fill(false));
 
@@ -26,9 +86,31 @@ const ContactPage = () => {
         <div className="live-chat">
           <h2>Live Chat</h2>
           <div className="chat-window">
-            <p>Chat with us to get answers to your questions!</p>
-            {/* ChatGPT-like interaction can go here */}
+            {!currentTitle && <h1>Scales&TailsGPT</h1>}
+            <ul className="feed">
+  {currentChat?.map((chatMessage, index) => (
+    <li key={index} className={chatMessage.role === 'user' ? 'message user-message' : 'message assistant-message'}>
+      <p className="content">{chatMessage.content}</p>
+    </li>
+  ))}
+</ul>
+
           </div>
+            <div className="bottom-section">
+              <div className="input-container d-flex">
+                <input
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  placeholder="Ask me something..."
+                />
+                <div id="submit" onClick={getMessage}>
+                  ➢
+                </div>
+              </div>
+              {/* <p className="info">
+                Chat GPT Mar 14 Version. Free Research Preview. Our goal is to make AI systems more natural and safe to interact with.
+              </p> */}
+            </div>
         </div>
 
         {/* Contact Form */}
@@ -38,7 +120,9 @@ const ContactPage = () => {
             <input type="text" placeholder="Your Name" required />
             <input type="email" placeholder="Your Email" required />
             <textarea placeholder="Your Message" required></textarea>
-            <button className="submit-button" type="submit">Submit</button>
+            <button className="submit-button" type="submit">
+              Submit
+            </button>
           </form>
         </div>
       </section>
@@ -76,3 +160,4 @@ const faqData = [
 ];
 
 export default ContactPage;
+

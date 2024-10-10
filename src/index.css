@@ -1848,3 +1848,45 @@ input[type="file"] {
   border-radius: 5px;
   width: 100%;
 }
+
+
+#submit{
+  position: relative;
+  bottom: 0px;
+  left: 0;
+  cursor: pointer;
+}
+
+/* chat style */
+.feed {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.message {
+  display: flex;
+  margin-bottom: 10px;
+  max-width: 60%;
+  padding: 10px;
+  border-radius: 10px;
+  word-wrap: break-word;
+}
+
+.user-message {
+  background-color: #e0ffe0; /* Light green background for user messages */
+  align-self: flex-end;
+  text-align: right;
+  margin-left: auto;
+}
+
+.assistant-message {
+  background-color: #f0f0f0; /* Light grey background for assistant messages */
+  align-self: flex-start;
+  text-align: left;
+  margin-right: auto;
+}
+
+.content {
+  margin: 0;
+}

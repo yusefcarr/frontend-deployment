@@ -41,7 +41,7 @@ const ServicesPage = () => {
         </div>
         <div className="service-card">
           <img src={Adoption} alt="Adoption" className="service-image" />
-          <Link to="/adoption" className="service-link">
+          <Link to="/adoption-form" className="service-link">
           <p>Adoption</p>
           </Link>
         </div>
