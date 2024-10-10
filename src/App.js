@@ -38,7 +38,7 @@ function App() {
     <div className="App">
       <NotificationBar />
       <Navbar/>
-      <CartPage />
+      {/* <CartPage /> */}
       <Routes>
 
         <Route path='/' element={<Home/>} />
