@@ -1867,7 +1867,7 @@ input[type="file"] {
 .message {
   display: flex;
   margin-bottom: 10px;
-  max-width: 60%;
+  max-width:fit-content;
   padding: 10px;
   border-radius: 10px;
   word-wrap: break-word;
