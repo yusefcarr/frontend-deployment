@@ -86,7 +86,6 @@ const ContactPage = () => {
         <div className="live-chat">
           <h2>Live Chat</h2>
           <div className="chat-window">
-            {!currentTitle && <h1>Scales&TailsGPT</h1>}
             <ul className="feed">
   {currentChat?.map((chatMessage, index) => (
     <li key={index} className={chatMessage.role === 'user' ? 'message user-message' : 'message assistant-message'}>
