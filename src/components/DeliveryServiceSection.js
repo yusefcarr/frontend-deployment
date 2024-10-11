@@ -11,10 +11,10 @@ const DeliveryServiceSection = () => {
   };
 
   return (
-    <div className="delivery-service-section mt-5">
+    <div className="delivery-service-section">
       {/* Left Side - Delivery Service Logo */}
       <div className="delivery-left">
-        <img src={DeliveryLogo} alt="Scales and Tails Delivery Service" className="delivery-logo" />
+        <img src={DeliveryLogo} alt="Scales and Tails Delivery Service" className="delivery-logo " />
       </div>
 
       {/* Right Side - Delivery Service Details */}

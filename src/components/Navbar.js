@@ -38,11 +38,12 @@ const NavBar = () => {
           <div className="bar"></div>
           <div className="bar"></div>
         </div>
+        </div>
         {/* Logo section */}
         <Link to="/">
           <img src={Logo} alt="Scales and Tails Logo" className="navbar-logo" />
         </Link>
-      </div>
+      
 
       {/* Sidebar */}
       <div
@@ -52,7 +53,7 @@ const NavBar = () => {
 
       {/* Account and Cart section */}
       <div className="right-section">
-        <button className="account-button">Account</button>
+        {/* <button className="account-button">Account</button> */}
         <Link to="/cart">
           🛒 ({cart.reduce((acc, item) => acc + item.quantity, 0)})
         </Link>
